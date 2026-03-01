@@ -1,6 +1,7 @@
 import { cookies } from "next/headers";
 import { getUserFromSessionToken } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import type { Booking } from "@prisma/client";
 
 export const runtime = "nodejs";
 
@@ -25,7 +26,7 @@ export default async function AccountPage() {
     );
   }
 
-  const bookings = await prisma.booking.findMany({
+  const bookings: Booking[] = await prisma.booking.findMany({
     where: { userId: user.id },
     orderBy: { createdAt: "desc" },
   });
