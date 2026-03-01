@@ -22,7 +22,7 @@ export default async function GalleryPage() {
         </div>
       ) : (
         <div className="mt-10 grid gap-4 sm:grid-cols-2 md:grid-cols-3">
-          {items.map((item) => (
+          {items.map((item: any) => (
             <div
               key={item.id}
               className="rounded-2xl overflow-hidden border bg-gray-50"
