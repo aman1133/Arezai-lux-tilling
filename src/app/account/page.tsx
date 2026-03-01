@@ -1,7 +1,6 @@
 import { cookies } from "next/headers";
 import { getUserFromSessionToken } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
-import type { Prisma } from "@prisma/client";
 
 export const runtime = "nodejs";
 
@@ -26,12 +25,13 @@ export default async function AccountPage() {
     );
   }
 
-  type BookingRow = Prisma.BookingGetPayload<{}>;
-
-  const bookings: BookingRow[] = await prisma.booking.findMany({
+  // ✅ No Prisma imports needed — infer the type from the query result
+  const bookings = await prisma.booking.findMany({
     where: { userId: user.id },
     orderBy: { createdAt: "desc" },
   });
+
+  type BookingRow = (typeof bookings)[number];
 
   return (
     <div className="max-w-3xl mx-auto py-16 px-4">
@@ -59,7 +59,7 @@ export default async function AccountPage() {
           <p className="text-gray-600 mt-4">No bookings yet.</p>
         ) : (
           <div className="mt-4 space-y-3">
-            {bookings.map((b) => (
+            {bookings.map((b: BookingRow) => (
               <div key={b.id} className="border rounded-xl p-4 bg-gray-50">
                 <div className="flex justify-between gap-4 flex-wrap">
                   <div>
