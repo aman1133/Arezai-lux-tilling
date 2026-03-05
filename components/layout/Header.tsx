@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { site } from "../../lib/site";
 import { getCurrentUser } from "@/lib/current-user";
+import Image from "next/image";
 
 const nav = [
   { href: "/", label: "Home" },
@@ -17,11 +18,25 @@ export default async function Header() {
     <header className="w-full border-b bg-white">
       <div className="mx-auto max-w-6xl px-4 py-4 flex items-center justify-between gap-4">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2">
-          <div className="h-10 w-10 rounded bg-black" />
+        <Link href="/" className="flex items-center gap-3">
+          <div className="bg-black rounded-lg p-1 shadow-sm">
+            <Image
+              src="/logo.png"
+              alt="Lux Tiling & Stone Services"
+              width={46}
+              height={46}
+              className="rounded-md"
+              priority
+            />
+          </div>
+
           <div className="leading-tight">
-            <div className="font-semibold">{site.name}</div>
-            <div className="text-xs text-gray-600">{site.serviceArea}</div>
+            <div className="font-semibold text-lg">
+              Lux Tiling & Stone Services Pty Ltd
+            </div>
+            <div className="text-sm text-gray-600">
+              Sydney & Surrounding Areas
+            </div>
           </div>
         </Link>
 
