@@ -1,12 +1,47 @@
+import {
+  Bath,
+  CookingPot,
+  LayoutGrid,
+  Gem,
+  Droplets,
+  Wrench,
+  Layers,
+  Building2,
+} from "lucide-react";
+
 const services = [
-  "Bathroom Tiling",
-  "Kitchen Splashbacks",
-  "Floor & Wall Tiling",
-  "Stone Installation",
-  "Waterproofing",
-  "Grouting & Re-grouting",
-  "Screeding",
-  "Commercial Tiling",
+  {
+    title: "Bathroom Tiling",
+    icon: Bath,
+  },
+  {
+    title: "Kitchen Splashbacks",
+    icon: CookingPot,
+  },
+  {
+    title: "Floor & Wall Tiling",
+    icon: LayoutGrid,
+  },
+  {
+    title: "Stone Installation",
+    icon: Gem,
+  },
+  {
+    title: "Waterproofing",
+    icon: Droplets,
+  },
+  {
+    title: "Grouting & Re-grouting",
+    icon: Wrench,
+  },
+  {
+    title: "Screeding",
+    icon: Layers,
+  },
+  {
+    title: "Commercial Tiling",
+    icon: Building2,
+  },
 ];
 
 export default function Services() {
@@ -27,15 +62,26 @@ export default function Services() {
         </div>
 
         <div className="mt-8 grid gap-4 sm:grid-cols-2 md:grid-cols-4">
-          {services.map((s) => (
-            <div key={s} className="rounded-2xl border bg-white p-5">
-              <div className="h-10 w-10 rounded-lg bg-black/5 mb-4" />
-              <div className="font-medium">{s}</div>
-              <p className="text-xs text-gray-600 mt-2">
-                High-quality materials, clean lines, and durable results.
-              </p>
-            </div>
-          ))}
+          {services.map((service) => {
+            const Icon = service.icon;
+
+            return (
+              <div
+                key={service.title}
+                className="rounded-2xl border bg-white p-5 transition hover:shadow-md"
+              >
+                <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-black/5">
+                  <Icon className="h-5 w-5 text-gray-800" />
+                </div>
+
+                <div className="font-medium">{service.title}</div>
+
+                <p className="text-xs text-gray-600 mt-2">
+                  High-quality materials, clean lines, and durable results.
+                </p>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

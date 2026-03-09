@@ -16,6 +16,7 @@
     "bcrypt": "^6.0.0",
     "cloudinary": "^2.9.0",
     "dotenv": "^17.3.1",
+    "lucide-react": "^0.577.0",
     "multer": "^2.0.2",
     "next": "16.1.6",
     "openai": "^6.25.0",
